@@ -20,7 +20,7 @@ class AdminUserSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make(env('ADMIN_PASSWORD', 'password')),
                 'remember_token' => Str::random(10),
-                'role' => env('ADMIN_ROLE', 'admin'),
+                'role' => env('ADMIN_ROLE', 'superadmin'),
             ]);
         }
     }

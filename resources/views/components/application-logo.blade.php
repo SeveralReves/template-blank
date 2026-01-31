@@ -1,5 +1,5 @@
 @php
-    $logo = asset('/images/logo-1.png');
+    $logo = asset('/images/svr.png');
     $width = isset($width) && !empty($width) ? $width : '' ;
     $height = isset($height) && !empty($height) ? $height : '' ;
 @endphp 

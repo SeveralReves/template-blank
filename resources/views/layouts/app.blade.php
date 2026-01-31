@@ -32,5 +32,14 @@
                 {{ $slot }}
             </main>
         </div>
+
+        <script>
+            window.__ACL__ = @json([
+                'role' => auth()->user()?->role,
+                'permissions' => auth()->check() ? \App\Support\Acl::userPermissions(auth()->user()) : [],
+            ]);
+            // <button v-if="can('units.move_state')">Mover unidad</button>
+        </script>
+
     </body>
 </html>
