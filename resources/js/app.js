@@ -1,131 +1,18 @@
 import './bootstrap';
 
-import Alpine from 'alpinejs';
-import Headroom from "headroom.js";
+import header from './components/app/header.js';
+import animate from './components/app/animate.js';
+import vue from './components/app/vue.js';
+import slick from './components/app/slick.js';  
+import UI from './components/app/UI.js';
 
-window.Alpine = Alpine;
-
-Alpine.start();
-
-import 'slick-carousel';
-import $ from 'jquery';
-
-
-// importa los CSS desde JS
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
-window.$ = $;
-window.jQuery = $;
-
-// vue
-import { initGoogle } from './lib/google';
-
-initGoogle(import.meta.env.VITE_GOOGLE_MAPS_API_KEY); //
-
-import { createApp } from 'vue'
-
-// Registro perezoso (lazy) por nombre de componente:
-const components = {
-  ExampleComponent: () => import('./components/ExampleComponent.vue'),
-  Booking: () => import('./components/Booking.vue'),
-  BookingTable: () => import('./components/BookingTable.vue'),
-}
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const navbar = document.querySelector(".header");
-  // construct an instance of Headroom, passing the element
-  if (!navbar) {
-    console.warn("No se encontró el elemento de navegación para Headroom.");
-  }else{
-    var headroom  = new Headroom(navbar, {
-    });
-    // initialise
-    headroom.init();
+  header.init();
+  animate.init();
+  vue.init();
+  slick.init();
+  UI.init();
 
-  }
-
-  AOS.init({
-    offset: 120, 
-    delay: 0, 
-    duration: 600,
-    easing: 'ease', 
-    once: true, 
-  });
-  // Busca todos los nodos Blade que pidan un componente Vue
-  document.querySelectorAll('[data-vue]').forEach(async (el) => {
-    const name = el.getAttribute('data-vue')
-    const loader = components[name]
-    if (!loader) return
-
-    // Props desde data-props (JSON)
-    let props = {}
-    const raw = el.getAttribute('data-props')
-    if (raw) {
-      try { props = JSON.parse(raw) } catch (_) {}
-    }
-
-    const Comp = (await loader()).default
-    const app = createApp(Comp, props)
-    app.mount(el)
-  })
-   document.querySelectorAll('.section__faq--container[data-faq-single="true"]').forEach(function (wrap) {
-      wrap.querySelectorAll('details.faq__item').forEach(function (det) {
-        det.addEventListener('toggle', function () {
-          const open = det.open;
-          // Actualiza aria-expanded del summary
-          const summary = det.querySelector('.faq__question');
-          if (summary) summary.setAttribute('aria-expanded', open ? 'true' : 'false');
-
-          if (open) {
-            wrap.querySelectorAll('details.faq__item[open]').forEach(function (other) {
-              if (other !== det) other.removeAttribute('open');
-              const s = other.querySelector('.faq__question');
-              if (s) s.setAttribute('aria-expanded', 'false');
-            });
-          }
-        });
-      });
-    });
-
-    const $slider = $('.js-reviews-slider');
-    if (!$slider.length || typeof $.fn.slick !== 'function') return;
-
-    $slider.slick({
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      infinite: true,
-      arrows: true,
-      dots: true,
-      appendArrows: $('.reviews__nav'),
-      appendDots: $('.js-reviews-dots'),
-      prevArrow: $('.reviews__arrow--prev'),
-      nextArrow: $('.reviews__arrow--next'),
-      autoplay: false,
-      responsive: [
-        { breakpoint: 1280, settings: { slidesToShow: 1 } },
-        // { breakpoint: 992,  settings: { slidesToShow: 2 } },
-        // { breakpoint: 576,  settings: { slidesToShow: 1 } },
-      ]
-
-    });
-    const $sliderGallery = $('.js-gallery-slider');
-    if (!$sliderGallery.length || typeof $.fn.slick !== 'function') return;
-
-    $sliderGallery.slick({
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      infinite: true,
-      arrows: false,
-      dots: false,
-      fade: true,
-      autoplaySpeed: 5000,
-      speed: 1000,
-      autoplay: true,
-    });
-    
-})
+});

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
-import { loadPlaces, loadMaps } from '../lib/google' // tu wrapper que hace importLibrary una sola vez
+import { loadPlaces, loadMaps } from '../../lib/google' // tu wrapper que hace importLibrary una sola vez
 
 const props = defineProps<{
   modelValue?: any

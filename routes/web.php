@@ -20,6 +20,8 @@ Route::get('/legals', function () {
     return view('legal');
 });
 Route::get('/', function () {
+    // solo admin 
+    // return redirect()->route('login');
     return view('welcome');
 });
 
