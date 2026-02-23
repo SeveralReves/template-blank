@@ -48,26 +48,25 @@ class User extends Authenticatable
         return Acl::normalizeRole($value);
     }
 
-    public function hasRole(string|array $roles): bool
+   public function hasRole(string|array $roles): bool
     {
         return Acl::hasRole($this, $roles);
     }
 
-    public function canDo(string $permission): bool
+    public function hasPermission(string $permission): bool
     {
         return Acl::can($this, $permission);
     }
 
-    public function canAny(array $permissions): bool
+    public function hasAnyPermission(array $permissions): bool
     {
         return Acl::any($this, $permissions);
     }
 
-    public function canAll(array $permissions): bool
+    public function hasAllPermissions(array $permissions): bool
     {
         return Acl::all($this, $permissions);
     }
-
     /* Con esto se puede hacer
         @can('users.update')
             <button>Editar usuario</button>

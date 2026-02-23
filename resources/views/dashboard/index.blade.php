@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h1 class="layout__admin--title">
             {{ __('Dashboard') }}
-        </h2>
+        </h1>
     </x-slot>
 
     
-  <div
+  {{-- <div
       data-vue="BookingTable"
       data-props='@json(["quotes" => $quotes])'>
-  </div>
+  </div> --}}
 </x-app-layout>

@@ -1,0 +1,65 @@
+@use '../base' as *;
+
+.table-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  &__label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  &__input,
+  &__textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 12px;
+    outline: none;
+  }
+  
+  &__textarea {
+    resize: vertical;
+  }
+  
+  &__error {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #c0392b;
+  }
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+.pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.button__secondary.is-active {
+  border: 1px solid #000;
+  font-weight: 700;
+}
+
+.pagination__meta {
+  margin-left: 10px;
+  font-size: 12px;
+  opacity: .75;
+}

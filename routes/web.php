@@ -21,11 +21,15 @@ Route::get('/legals', function () {
 });
 Route::get('/', function () {
     // solo admin 
-    // return redirect()->route('login');
-    return view('welcome');
+    return redirect()->route('login');
+    // return view('welcome');
 });
-
-Route::get('/dashboard',[DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::prefix('dashboard')->group(function () {
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/usuarios', [DashboardController::class, 'users'])->name('users');
+    });
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

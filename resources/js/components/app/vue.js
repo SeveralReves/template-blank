@@ -6,6 +6,7 @@ const init = () => {
     ExampleComponent: () => import('../vue/ExampleComponent.vue'),
     Booking: () => import('../vue/Booking.vue'),
     BookingTable: () => import('../vue/BookingTable.vue'),
+    UsersTable: () => import('../vue/Users/index.vue'),
   }
 
   // Busca todos los nodos Blade que pidan un componente Vue
