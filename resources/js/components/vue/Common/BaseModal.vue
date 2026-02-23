@@ -77,7 +77,7 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 16px;
-  z-index: 9999;
+  z-index: 10;
 }
 
 .modal-container {
@@ -115,7 +115,7 @@ export default {
 
 .modal-body {
   padding: 18px;
-  height: 700px;
+  max-height: 700px;
   overflow: scroll;
   max-height: 80vh;
 }

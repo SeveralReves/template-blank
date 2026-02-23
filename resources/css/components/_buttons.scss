@@ -2,6 +2,10 @@
 
 .button{
   &__primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
     padding: 8px 16px;
     border-radius: 10px;
     font-weight: 700;
@@ -11,7 +15,7 @@
     font-size: 16px;
     transition: all 350ms ease-in-out;
     @include hover {
-      background-color: $secondary;
+      background-color: $primary-darken;
     }
     @media (max-width: 1025px) {
       font-size: 12px;
@@ -22,6 +26,9 @@
     }
   }
   &__secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 8px 16px;
     border-radius: 10px;
     font-weight: 700;
@@ -31,10 +38,44 @@
     font-size: 16px;
     transition: all 350ms ease-in-out;
     @include hover {
-      background-color: $primary;
+      background-color: $secondary-darken;
     }
     @media (max-width: 1025px) {
       font-size: 12px;
+    }
+  }
+  &__danger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    background-color: $danger;
+    color: $white;
+    font-size: 16px;
+    transition: all 350ms ease-in-out;
+    @include hover {
+      background-color: $danger-darken;
+    }
+    @media (max-width: 1025px) {
+      font-size: 12px;
+    }
+  }
+
+  &--small {
+    padding: 4px 8px;
+    font-size: 14px;
+    @media (max-width: 1025px) {
+      font-size: 10px;
+    }
+  }
+  &--large {
+    padding: 10px 20px;
+    font-size: 18px;
+    @media (max-width: 1025px) {
+      font-size: 14px;
     }
   }
 }

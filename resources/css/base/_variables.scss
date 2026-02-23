@@ -1,10 +1,16 @@
-$primary: #50A7E5; 
-$secondary: #C7465F; // dark
+$primary: #1152d4; 
+$primary-darken: #033394; 
+$secondary: #22c55e; // dark
+$secondary-darken: #16a34a; // dark
 $tertiary: #C7C046;
-$gray: #4E6872;
+$danger: #ef4444; // dark
+$danger-darken: #dc2626; // dark
+$gray: #111318;
 $black: #1E1E1E; // dark
 $white: #FFFFFF; // white
-$bg-color: #f3f4f6;
+// $bg-color: #f3f4f6;
+$bg-color: #101622;
+$border-color: #1e293b; 
 .bg-primary {
     background-color: $primary;
 }
