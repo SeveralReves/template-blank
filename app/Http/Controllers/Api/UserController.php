@@ -53,7 +53,7 @@ class UserController extends Controller
         $user = User::create([
             'name'     => $request->name,
             'email'    => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
             'role'     => $request->role,
         ]);
 
@@ -77,7 +77,7 @@ class UserController extends Controller
         $user->update($request->only(['name', 'email', 'role']));
 
         if ($request->has('password')) {
-            $user->update(['password' => Hash::make($request->password)]);
+            $user->update(['password' => $request->password]);
         }
 
         return response()->json([

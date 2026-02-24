@@ -45,21 +45,21 @@
         <tr>
           <td :colspan="columns.length">
             <div class="pagination" v-if="pagination?.last_page > 1">
-              <button class="button__secondary" :disabled="pagination.current_page <= 1" @click="goToPage(pagination.current_page - 1)">
+              <button class="pagination__button" :disabled="pagination.current_page <= 1" @click="goToPage(pagination.current_page - 1)">
                 Anterior
               </button>
 
               <button
                 v-for="p in pagesToShow"
                 :key="p"
-                class="button__secondary"
+                class="pagination__page"
                 :class="{ 'is-active': p === pagination.current_page }"
                 @click="goToPage(p)"
               >
                 {{ p }}
               </button>
 
-              <button class="button__secondary" :disabled="pagination.current_page >= pagination.last_page" @click="goToPage(pagination.current_page + 1)">
+              <button class="pagination__button" :disabled="pagination.current_page >= pagination.last_page" @click="goToPage(pagination.current_page + 1)">
                 Siguiente
               </button>
 

@@ -235,7 +235,7 @@ export default {
           icon: 'error',
           title: 'Error',
           text: error.response?.data?.message || 'No se pudo cargar la lista.',
-          customClass: { container: 'swal-high-z' },
+          customClass: { container: 'swal-high-z', confirmButton: 'button__primary' },
         })
       } finally {
         this.loadingList = false
@@ -276,7 +276,7 @@ export default {
       this.openCreateModal = true
     },
 
-    async openEdit(user) {
+    openEdit(user) {
       this.isEdit = true
       this.editingId = user.id
       this.autoSlug = false
@@ -291,6 +291,41 @@ export default {
       }
 
       this.openCreateModal = true
+    },
+
+    openDelete(user) {
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: `Confirma que deseas eliminar el usuario "${user.name}". Esta acción no se puede deshacer.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+        customClass: { container: 'swal-high-z', confirmButton: 'button__primary', cancelButton: 'button__gray' },
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            await axios.delete(`/api/users/${user.id}`)
+            Swal.fire({
+              icon: 'success',
+              title: 'Eliminado',
+              text: 'El usuario ha sido eliminado.',
+              timer: 2000,
+              showConfirmButton: false,
+              customClass: { container: 'swal-high-z', confirmButton: 'button__primary', },
+            })
+            this.fetchData(this.pagination.current_page)
+          } catch (error) {
+            console.error(error)
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: error.response?.data?.message || 'No se pudo eliminar el usuario.',
+              customClass: { container: 'swal-high-z', confirmButton: 'button__primary', },
+            })
+          }
+        }
+      })
     },
 
     resetForm() {
@@ -327,6 +362,10 @@ export default {
         let id = userId
 
         if (wasEdit) {
+          if (!payload.password) {
+            delete payload.password
+            delete payload.password_confirmation
+          }
           await axios.put(`/api/users/${userId}`, payload)
         } else {
           const res = await axios.post('/api/users', payload)
@@ -339,7 +378,7 @@ export default {
           text: wasEdit ? 'Usuario actualizado con éxito.' : 'Usuario creado con éxito.',
           timer: 2000,
           showConfirmButton: false,
-          customClass: { container: 'swal-high-z' },
+          customClass: { container: 'swal-high-z', confirmButton: 'button__primary', },
         })
 
         this.openCreateModal = false
@@ -365,7 +404,7 @@ export default {
           icon: 'error',
           title: 'Error',
           text: error.response?.data?.message || 'No se pudo guardar la rifa.',
-          customClass: { container: 'swal-high-z' },
+          customClass: { container: 'swal-high-z', confirmButton: 'button__primary', },
         })
       }
     },

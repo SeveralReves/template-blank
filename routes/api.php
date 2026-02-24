@@ -32,9 +32,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::patch('/vessels/{vessel}/finish', [VesselController::class, 'finish']);
     });
 
-    // Route::middleware(['role:admin,superadmin'])->group(function () {
+    Route::middleware(['role:admin,superadmin'])->group(function () {
         Route::apiResource('users', UserController::class);
-    // });
+    });
 
     // Endpoint para que el frontend (Vue) sepa quién es el usuario actual y sus permisos
     Route::get('/me', function (Request $request) {

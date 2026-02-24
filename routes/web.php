@@ -27,7 +27,9 @@ Route::get('/', function () {
 Route::prefix('dashboard')->group(function () {
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/usuarios', [DashboardController::class, 'users'])->name('users');
+        Route::middleware(['role:admin,superadmin'])->group(function () {
+            Route::get('/usuarios', [DashboardController::class, 'users'])->name('users');
+        });
     });
 });
 

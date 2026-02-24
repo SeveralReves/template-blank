@@ -42,14 +42,20 @@
         justify-content: flex-start;
         gap: 10px;
         overflow: hidden;
+
+        .material-symbols-outlined {
+          width: 20px;
+        }
         &.active {
           font-weight: 700;
+          .material-symbols-outlined {
+            color: $primary;
+          }
         }
         svg {
           width: 20px;
         }
         span {
-          flex: 1;
           transition: all 350ms ease-in-out;
         }
       }
@@ -71,7 +77,7 @@
         #{$admin} {
           &--nav {
             &-item {
-              span {
+              span:not(.material-symbols-outlined) {
                 max-width: 0;
                 opacity: 0;
                 visibility: hidden;
